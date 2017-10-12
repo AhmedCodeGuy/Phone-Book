@@ -1,4 +1,4 @@
-var data = [
+var contacts = [
 {"name":"Yorke","phone":"20-908-5007","email":"yhargess0@moonfruit.com"},
 {"name":"Lila","phone":"40-086-0452","email":"lalbrook1@wikia.com"},
 {"name":"Audrey","phone":"17-818-2184","email":"adonisi2@yellowpages.com"},
