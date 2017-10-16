@@ -107,7 +107,9 @@ var handlers = {
   showAllContacts() {
     view.displayContacts(contacts);
   },
+  addContact() {
 
+  },
   removeContact() {
   let toBeRemoved = parseInt(document.getElementById('removeContactNumber').value);
   document.getElementById('removeContactNumber').value = '';
@@ -116,7 +118,6 @@ var handlers = {
   },
 
   searchContacts() {
-  debugger;
     let searchText = document.getElementById('searchText').value;
     let searchedContacts = myPhoneBook.search(searchText);
     document.getElementById('searchText').value = '';
