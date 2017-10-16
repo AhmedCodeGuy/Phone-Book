@@ -88,9 +88,73 @@ class PhoneBook {
 };
 
 // create a new object and set its prototype to PhoneBook and pass it the contacts.
-let myPhoneBook = new PhoneBook(contacts);
+var myPhoneBook = new PhoneBook(contacts);
 
 
+var requestedContacts = myPhoneBook.list();
+
+var handlers = {
+  showContacts() {
+    debugger;
+    let pageNumberText = parseInt(document.getElementById('pageNumberText').value);
+    let contactsPerPageText = parseInt(document.getElementById('contactsPerPageText').value);
+    document.getElementById('pageNumberText').value = '';
+    document.getElementById('contactsPerPageText').value = '';
+    requestedContacts = myPhoneBook.list(pageNumberText, contactsPerPageText);
+    view.displayContacts(requestedContacts);
+  },
+
+  showAllContacts() {
+    view.displayContacts(contacts);
+  },
+
+  removeContact() {
+  let toBeRemoved = parseInt(document.getElementById('removeContactNumber').value);
+  document.getElementById('removeContactNumber').value = '';
+  myPhoneBook.remove(toBeRemoved);
+  view.displayContacts(contacts);
+  },
+
+  searchContacts() {
+  debugger;
+    let searchText = document.getElementById('searchText').value;
+    let searchedContacts = myPhoneBook.search(searchText);
+    document.getElementById('searchText').value = '';
+    view.displayContacts(searchedContacts);
+  }
+}
+
+
+var view = {
+  // display contacts function
+  displayContacts(contacts = contacts) {
+    // debugger;
+    let contactsTable = document.querySelector('tbody');
+    contactsTable.innerHTML = '';
+
+    contacts.forEach((contact, position) => {
+      let contactRow = document.createElement('tr');
+      let contactName = document.createElement('td');
+      let contactPhone = document.createElement('td');
+      let contactEmail = document.createElement('td');
+      
+      contactName.innerHTML = contact.name;
+      contactPhone.innerHTML = contact.phone;
+      contactEmail.innerHTML = contact.email;
+
+      contactRow.appendChild(contactName);
+      contactRow.appendChild(contactPhone);
+      contactRow.appendChild(contactEmail);
+
+      contactsTable.append(contactRow);
+    });
+  },
+
+}
+
+
+
+view.displayContacts(requestedContacts = contacts);
 
 
 // =============================

@@ -3,12 +3,102 @@
 <head>
 	<meta charset="UTF-8">
 	<title>webkeyz-task</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<a href="#" id="logo">
+	<img src="imgs/phone-book.png" alt="logo">
+</a>
 
+<div class="scrollbar" id="style-1">
+    <div class="force-overflow"></div>
+</div> 
+
+<h1><span class="yellow">- PHONE BOOK -</pan></h1>
+<h2>CODED WITH 	&#10084;<span class="fa fa-heart" aria-hidden="true"></span> FOR <a href="https://www.webkeyz.com/" target="_blank">web keyz</a></h2>
+
+<div class="form-style-1">
+	<label>Name</label>
+	<input id="addNameText" type="text">
+	<label>Phone Number</label>
+	<input id="addPhoneNumberText" type="text">
+	<label>Email</label>
+	<input id="addEmailText" type="text">
+	<button onclick="">Add</button>
+</div>
+
+<div class="form-style-1">
+	<label>Page</label>
+	<input id="pageNumberText" type="number">
+	<label>Contacts Per Page</label>
+	<input id="contactsPerPageText" type="number">
+	<button onclick="handlers.showContacts()">Show Contacts</button>
+	<button onclick="handlers.showAllContacts()">Show All</button>
+</div>
+<div class="form-group">
+	<div class="form-style-1 form-align-1">
+		<label>Remove</label>
+		<input id="removeContactNumber" type="number">
+		<button onclick="handlers.removeContact()">Remove</button>
+	</div>
+
+	<div class="form-style-1 form-align-2">
+		<label>Search</label>
+		<input id="searchText" type="text">
+		<button onclick="handlers.searchContacts()">Search</button>
+	</div>
+</div>
+
+<table class="container" id="table">
+	<thead>
+		<tr>
+			<th><h1>Name</h1></th>
+			<th><h1>Phone Number</h1></th>
+			<th><h1>Email</h1></th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<div href="#" id="phone-book">
+	<svg viewBox="0 0 600 400">
+	  <symbol id="s-text">
+	    <text text-anchor="middle"
+	          x="50%"
+	          y="35%"
+	          class="text--line"
+	          >
+	      Web Keyz
+	    </text>
+	    <text text-anchor="middle"
+	          x="50%"
+	          y="68%"
+	          class="text--line2"
+	          >
+	      Phone Book
+	    </text>
+	    
+	  </symbol>
+	  
+	  <g class="g-ants">
+	    <use xlink:href="#s-text"
+	      class="text-copy"></use>     
+	    <use xlink:href="#s-text"
+	      class="text-copy"></use>     
+	    <use xlink:href="#s-text"
+	      class="text-copy"></use>     
+	    <use xlink:href="#s-text"
+	      class="text-copy"></use>     
+	    <use xlink:href="#s-text"
+	      class="text-copy"></use>     
+	  </g>
+	  
+	</svg>
+</div>
 <!-- scripts -->
 <!-- we can use module exports / imports instead of this method -->
 <script type="text/javascript" src="../data.js"></script>
 <script type="text/javascript" src="../dist/app.js"></script>
+
 </body>
 </html>

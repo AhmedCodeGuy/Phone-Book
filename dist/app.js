@@ -24,9 +24,9 @@ var PhoneBook = function () {
     key: "add",
     value: function add(contact) {
       debugger;
-      if (contact.name.length >= 10) {
+      if (contact.name.length >= 100) {
         console.log(contact.name + " is too large.");
-      } else if (contacts.length >= 1001) {
+      } else if (contacts.length >= 10000) {
         console.log("You can't add more contacts");
         // console.log(this.sort(contacts));
       } else if (this.nameReg.test(contact.name) === false || this.phoneReg.test(contact.phone) === false || this.emailReg.test(contact.email) === false) {
@@ -123,6 +123,66 @@ var PhoneBook = function () {
 
 // create a new object and set its prototype to PhoneBook and pass it the contacts.
 var myPhoneBook = new PhoneBook(contacts);
+
+var requestedContacts = myPhoneBook.list();
+
+var handlers = {
+  showContacts: function showContacts() {
+    debugger;
+    var pageNumberText = parseInt(document.getElementById('pageNumberText').value);
+    var contactsPerPageText = parseInt(document.getElementById('contactsPerPageText').value);
+    document.getElementById('pageNumberText').value = '';
+    document.getElementById('contactsPerPageText').value = '';
+    requestedContacts = myPhoneBook.list(pageNumberText, contactsPerPageText);
+    view.displayContacts(requestedContacts);
+  },
+  showAllContacts: function showAllContacts() {
+    view.displayContacts(contacts);
+  },
+  removeContact: function removeContact() {
+    var toBeRemoved = parseInt(document.getElementById('removeContactNumber').value);
+    document.getElementById('removeContactNumber').value = '';
+    myPhoneBook.remove(toBeRemoved);
+    view.displayContacts(contacts);
+  },
+  searchContacts: function searchContacts() {
+    debugger;
+    var searchText = document.getElementById('searchText').value;
+    var searchedContacts = myPhoneBook.search(searchText);
+    document.getElementById('searchText').value = '';
+    view.displayContacts(searchedContacts);
+  }
+};
+
+var view = {
+  // display contacts function
+  displayContacts: function displayContacts() {
+    var contacts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : contacts;
+
+    // debugger;
+    var contactsTable = document.querySelector('tbody');
+    contactsTable.innerHTML = '';
+
+    contacts.forEach(function (contact, position) {
+      var contactRow = document.createElement('tr');
+      var contactName = document.createElement('td');
+      var contactPhone = document.createElement('td');
+      var contactEmail = document.createElement('td');
+
+      contactName.innerHTML = contact.name;
+      contactPhone.innerHTML = contact.phone;
+      contactEmail.innerHTML = contact.email;
+
+      contactRow.appendChild(contactName);
+      contactRow.appendChild(contactPhone);
+      contactRow.appendChild(contactEmail);
+
+      contactsTable.append(contactRow);
+    });
+  }
+};
+
+view.displayContacts(requestedContacts = contacts);
 
 // =============================
 // ======= Code Testing ========
