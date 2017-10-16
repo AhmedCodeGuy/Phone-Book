@@ -25,20 +25,20 @@ var PhoneBook = function () {
     value: function add(contact) {
       debugger;
       if (contact.name.length >= 100) {
-        console.log(contact.name + " is too large.");
+        alert(contact.name + " is too large.");
       } else if (contacts.length >= 10000) {
-        console.log("You can't add more contacts");
-        // console.log(this.sort(contacts));
+        alert("You can't add more contacts");
+        // alert(this.sort(contacts));
       } else if (this.nameReg.test(contact.name) === false || this.phoneReg.test(contact.phone) === false || this.emailReg.test(contact.email) === false) {
-        // console.log("Please enter a valid name: \nex: Joel Campers");
-        // console.log("Please enter a valid phone number: \nex: 22-222-2222");
-        // console.log("Please enter a valid email: \nex: jane_99@doe.com");
-        console.log("Please enter a valid:\nName: Joel\nPhone Number: 22-222-2222\nEmail: jane@doe.com 1");
-        // console.log(contacts);
+        // alert("Please enter a valid name: \nex: Joel Campers");
+        // alert("Please enter a valid phone number: \nex: 22-222-2222");
+        // alert("Please enter a valid email: \nex: jane_99@doe.com");
+        alert("Please enter a valid:\nName: Joel\nPhone Number: 22-222-2222\nEmail: jane@doe.com");
+        // alert(contacts);
       } else {
         contacts.push(contact);
-        // console.log(this.sort(contacts));
-        console.log(contacts);
+        // alert(this.sort(contacts));
+        alert(contacts);
       }
     }
 
@@ -139,6 +139,17 @@ var handlers = {
   showAllContacts: function showAllContacts() {
     view.displayContacts(contacts);
   },
+  addContact: function addContact() {
+    var addNameText = document.getElementById('addNameText').value;
+    var addPhoneNumberText = document.getElementById('addPhoneNumberText').value;
+    var addEmailText = document.getElementById('addEmailText').value;
+    document.getElementById('addNameText').value = '';
+    document.getElementById('addPhoneNumberText').value = '';
+    document.getElementById('addEmailText').value = '';
+    myPhoneBook.add({ name: addNameText, phone: addPhoneNumberText, email: addEmailText });
+    myPhoneBook.sort(contacts);
+    view.displayContacts(contacts);
+  },
   removeContact: function removeContact() {
     var toBeRemoved = parseInt(document.getElementById('removeContactNumber').value);
     document.getElementById('removeContactNumber').value = '';
@@ -146,7 +157,6 @@ var handlers = {
     view.displayContacts(contacts);
   },
   searchContacts: function searchContacts() {
-    debugger;
     var searchText = document.getElementById('searchText').value;
     var searchedContacts = myPhoneBook.search(searchText);
     document.getElementById('searchText').value = '';
